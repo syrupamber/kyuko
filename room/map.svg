@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1080" width="1000" height="1080" role="img" aria-labelledby="map-title map-desc">
+  <title id="map-title">空、鶴を聴く　部屋の見取り図（第一版・骨組み）</title>
+  <desc id="map-desc">床を上から見た平面図のまわりに、四方の壁を外側へ倒して並べた展開図。北の壁にフェルメール「天文学者」「地理学者」、西の壁に曽我蕭白「林和靖図」と、三日月と鶴の見える十字の桟の窓、東の壁に「通り味」「白聞」の文字。床に苔のテラリウム（中に空いている「最初の住人の席」）、砂時計、ルクスの水槽があり、天井の灯り Lumen の位置を点線の輪で示している。</desc>
+
+  <!--
+    空、鶴を聴く　部屋の見取り図　第一版（骨組み）
+
+    ・床は上から見た図。四方の壁は、床のふちを折り目にして外側へ倒した展開図。
+    ・壁のグループ（wall-*）の中は、その壁に向かって立ったときの座標で描いてある。
+      左上が (0,0)、横は壁の幅（北・南は 480、東・西は 400）、縦は天井 (0) から床 (200) まで。
+      外へ倒す向きは各グループの transform が受け持つので、細部を足すときは回転を気にせず描けばよい。
+    ・床のグループ（floor）の中は、北を上にした座標。左上が北西の隅 (0,0)、右下が南東の隅 (480,400)。
+    ・天井にあるもの（Lumen）は、床の図に、真上から映した位置を点線で描いてある。
+    ・置いたものは一つずつ <g id="..."> にまとめてある。拡大すると見つかる細部は、それぞれのグループの中に足していく。
+  -->
+
+  <style>
+    text { font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP", "Noto Serif CJK JP", serif; fill: #333; }
+    .wall { fill: #ece5d6; stroke: #8a8070; stroke-width: 1; }
+    .floor { fill: #f4efe4; stroke: #3a3a3a; stroke-width: 2; }
+    .frame { fill: #3b2f2a; }
+    .canvas { fill: #f7f2e7; }
+    .label { font-size: 15px; text-anchor: middle; }
+    .sub { font-size: 11px; text-anchor: middle; fill: #666; }
+    .wall-name { font-size: 13px; text-anchor: middle; fill: #555; }
+    .note { font-size: 13px; fill: #555; }
+    .paper { fill: #f7f2e7; stroke: #b9ae98; stroke-width: 1; }
+    .word { font-size: 22px; text-anchor: middle; fill: #2b2b2b; }
+    .ceiling { fill: #8a6d1c; }
+  </style>
+
+  <rect width="1000" height="1080" fill="#faf7f0"/>
+
+  <g id="room">
+
+    <!-- 北の壁：床のふちを下にして、上へ起こした向き -->
+    <g id="wall-north" transform="translate(260,150)">
+      <rect class="wall" width="480" height="200"/>
+
+      <g id="vermeer-astronomer">
+        <title>フェルメール「天文学者」</title>
+        <rect class="frame" x="105" y="40" width="100" height="113"/>
+        <rect class="canvas" x="115" y="50" width="80" height="93"/>
+        <text class="label" x="155" y="96">天文学者</text>
+        <text class="sub" x="155" y="116">フェルメール</text>
+      </g>
+
+      <g id="vermeer-geographer">
+        <title>フェルメール「地理学者」</title>
+        <rect class="frame" x="275" y="40" width="100" height="113"/>
+        <rect class="canvas" x="285" y="50" width="80" height="93"/>
+        <text class="label" x="325" y="96">地理学者</text>
+        <text class="sub" x="325" y="116">フェルメール</text>
+      </g>
+    </g>
+
+    <!-- 東の壁：左が北、右が南 -->
+    <g id="wall-east" transform="translate(940,350) rotate(90)">
+      <rect class="wall" width="400" height="200"/>
+
+      <g id="hanging-word-1">
+        <title>通り味</title>
+        <rect class="paper" x="110" y="35" width="50" height="130"/>
+        <text class="word" x="135" y="80">通</text>
+        <text class="word" x="135" y="108">り</text>
+        <text class="word" x="135" y="136">味</text>
+      </g>
+
+      <g id="hanging-word-2">
+        <title>白聞</title>
+        <rect class="paper" x="240" y="35" width="50" height="130"/>
+        <text class="word" x="265" y="94">白</text>
+        <text class="word" x="265" y="122">聞</text>
+      </g>
+    </g>
+
+    <!-- 南の壁：まだ何も掛けていない -->
+    <g id="wall-south" transform="translate(740,950) rotate(180)">
+      <rect class="wall" width="480" height="200"/>
+    </g>
+
+    <!-- 西の壁：左が南、右が北 -->
+    <g id="wall-west" transform="translate(60,750) rotate(-90)">
+      <rect class="wall" width="400" height="200"/>
+
+      <g id="shohaku-rinnasei">
+        <title>曽我蕭白「林和靖図」</title>
+        <rect class="frame" x="90" y="35" width="90" height="130"/>
+        <rect class="canvas" x="98" y="43" width="74" height="114"/>
+        <text class="label" x="135" y="96">林和靖図</text>
+        <text class="sub" x="135" y="116">曽我蕭白</text>
+      </g>
+
+      <g id="window-west">
+        <title>西の窓</title>
+        <rect x="240" y="40" width="90" height="100" fill="#d9d1c0" stroke="#8a8070"/>
+        <rect x="246" y="46" width="78" height="88" fill="#2f3a56"/>
+
+        <g id="crescent-moon">
+          <title>三日月</title>
+          <!-- 夕方の西の空の三日月なので、右下が光っている -->
+          <path d="M 305 57 A 11 11 0 0 1 305 79 A 7 11 0 0 0 305 57 Z" fill="#f3e6b0" transform="rotate(30 305 68)"/>
+        </g>
+
+        <!-- 窓の外を飛ぶ鶴。中の座標は胴の真ん中が (0,0)、頭は右 -->
+        <g id="crane" transform="translate(266,113)">
+          <title>鶴</title>
+          <path d="M -3 0 C -7 -6 -11 -9 -16 -9 C -11 -6 -8 -2 -2 2 Z" fill="#fbfaf5"/>
+          <path d="M 2 0 C 6 -7 10 -11 15 -12 C 11 -7 8 -2 3 2 Z" fill="#fbfaf5"/>
+          <ellipse cx="0" cy="1.5" rx="6" ry="2" fill="#fbfaf5"/>
+          <path d="M 5 1 L 13 -1 M -5 2 L -15 4" stroke="#fbfaf5" stroke-width="1" stroke-linecap="round"/>
+          <circle cx="13.8" cy="-1.3" r="1.4" fill="#fbfaf5"/>
+          <circle cx="13.9" cy="-2.2" r="0.75" fill="#d33a2c"/>
+        </g>
+
+        <!-- 十字の桟 -->
+        <path d="M 285 46 V 134 M 246 90 H 324" stroke="#d9d1c0" stroke-width="4"/>
+      </g>
+    </g>
+
+    <!-- 床：北を上にして、上から見た向き -->
+    <g id="floor" transform="translate(260,350)">
+      <rect class="floor" width="480" height="400"/>
+      <text class="note" x="14" y="24">床（上から見た図）</text>
+
+      <g id="moss-terrarium">
+        <title>苔のテラリウム</title>
+        <circle cx="120" cy="210" r="40" fill="#eef5f2" stroke="#9fb7b0" stroke-width="1.5"/>
+        <circle cx="120" cy="210" r="30" fill="#7f9f6a" opacity="0.6"/>
+
+        <g id="first-resident-seat">
+          <title>最初の住人の席（空いている）</title>
+          <circle cx="120" cy="208" r="9" fill="none" stroke="#faf7f0" stroke-width="1.6" stroke-dasharray="3 2.5"/>
+        </g>
+
+        <text class="label" x="120" y="274">苔のテラリウム</text>
+        <text class="sub" x="120" y="292">（点線の丸：最初の住人の席）</text>
+      </g>
+
+      <g id="hourglass">
+        <title>砂時計</title>
+        <rect x="222" y="272" width="36" height="36" rx="4" fill="#c9b08a" stroke="#7a6548"/>
+        <circle cx="240" cy="290" r="11" fill="#f1f4f4" stroke="#9aa5a5"/>
+        <text class="label" x="240" y="330">砂時計</text>
+      </g>
+
+      <g id="lux-aquarium">
+        <title>ルクスの水槽</title>
+        <rect x="300" y="140" width="130" height="84" fill="#d8e8ef" stroke="#5f7f8f" stroke-width="1.5"/>
+        <text class="label" x="365" y="246">ルクスの水槽</text>
+
+        <!-- ルクス：上から見たタコ。頭（外套膜）が北、八本の腕が南へ広がる。中の座標は頭と腕の付け根が (0,0) -->
+        <g id="lux" transform="translate(365,180)">
+          <title>ルクス（赤い石を持っているタコ）</title>
+          <g stroke="#e2836b" stroke-width="2.4" stroke-linecap="round" fill="none">
+            <path d="M 3.9 2.3 C 10.8 1.1 17.0 1.8 19.0 -3.2 Q 19.5 -8.2 15.8 -8.5"/>
+            <path d="M 3.8 4.3 C 10.4 6.5 15.5 10.1 19.7 6.7 Q 22.5 2.4 19.3 0.5"/>
+            <path d="M 2.7 5.9 C 7.5 11.1 10.2 16.6 14.1 19.9"/>
+            <path d="M 1.0 6.9 C 2.7 13.7 2.4 19.8 7.6 21.5 Q 12.7 21.6 12.6 17.9"/>
+            <path d="M -1.0 6.9 C -2.7 13.7 -2.4 19.8 -7.6 21.5 Q -12.7 21.6 -12.6 17.9"/>
+            <path d="M -2.7 5.9 C -7.5 11.1 -10.2 16.6 -15.5 15.6 Q -20.0 13.3 -18.2 10.0"/>
+            <path d="M -3.8 4.3 C -10.4 6.5 -15.5 10.1 -19.7 6.7 Q -22.5 2.4 -19.3 0.5"/>
+            <path d="M -3.9 2.3 C -10.8 1.1 -17.0 1.8 -19.0 -3.2 Q -19.5 -8.3 -15.8 -8.5"/>
+          </g>
+          <ellipse cx="0" cy="-9" rx="8" ry="11" fill="#e2836b" stroke="#c4634b" stroke-width="0.8"/>
+          <circle cx="-5.2" cy="1" r="2" fill="#fff"/>
+          <circle cx="5.2" cy="1" r="2" fill="#fff"/>
+          <circle cx="-5.2" cy="1.3" r="1" fill="#3a2a2a"/>
+          <circle cx="5.2" cy="1.3" r="1" fill="#3a2a2a"/>
+
+          <g id="red-stone">
+            <title>赤い石</title>
+            <circle cx="16.2" cy="22.3" r="3.6" fill="#c62828" stroke="#7a1a1a" stroke-width="0.6"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- 天井の灯り：床の図には、真上から映した位置を点線で示す -->
+      <g id="lumen">
+        <title>Lumen（天井の、輪の形の灯り）</title>
+        <g fill="none" stroke="#b08d2a" stroke-width="1.5" stroke-dasharray="4 3">
+          <circle cx="240" cy="200" r="30"/>
+          <circle cx="240" cy="200" r="21"/>
+        </g>
+        <text class="label ceiling" x="240" y="250">Lumen</text>
+      </g>
+    </g>
+  </g>
+
+  <g id="map-labels">
+    <text x="60" y="62" font-size="24px">空、鶴を聴く　部屋の見取り図</text>
+    <text x="60" y="92" font-size="14px" fill="#666">第一版（骨組み）</text>
+
+    <g id="compass">
+      <path d="M 920 104 L 920 66" stroke="#555" stroke-width="1.5"/>
+      <path d="M 914 74 L 920 60 L 926 74 Z" fill="#555"/>
+      <text x="920" y="50" font-size="15px" text-anchor="middle">北</text>
+    </g>
+
+    <text class="wall-name" x="500" y="140">北の壁</text>
+    <text class="wall-name" x="840" y="340">東の壁</text>
+    <text class="wall-name" x="500" y="972">南の壁</text>
+    <text class="wall-name" x="160" y="340">西の壁</text>
+
+    <text class="note" x="60" y="1010">床は上から見た図。四方の壁は、床のふちを折り目にして外側へ倒して描いています。</text>
+    <text class="note" x="60" y="1032">壁の中のものは、その壁に向かって立ったときの向きです（西の壁は首を左に、東の壁は首を右にかしげると正面から見た向きになります）。</text>
+    <text class="note" x="60" y="1054">点線の輪は、天井の灯り Lumen を床に映した位置です。</text>
+  </g>
+</svg>
