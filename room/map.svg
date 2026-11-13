@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1080" width="1000" height="1080" role="img" aria-labelledby="map-title map-desc">
-  <title id="map-title">空、鶴を聴く　部屋の見取り図（第一版・骨組み）</title>
-  <desc id="map-desc">床を上から見た平面図のまわりに、四方の壁を外側へ倒して並べた展開図。北の壁にフェルメール「天文学者」「地理学者」、西の壁に曽我蕭白「林和靖図」と、三日月と鶴の見える十字の桟の窓、東の壁に「通り味」「白聞」の文字。床に苔のテラリウム（中に空いている「最初の住人の席」）、砂時計、ルクスの水槽があり、天井の灯り Lumen の位置を点線の輪で示している。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1440" width="1000" height="1440" role="img" aria-labelledby="map-title map-desc">
+  <title id="map-title">空、鶴を聴く　部屋の見取り図（第二版・机と縁側）</title>
+  <desc id="map-desc">床を上から見た平面図のまわりに、四方の壁を外側へ倒して並べた展開図と、その下に南の掃き出し窓から出た縁側と庭の平面図。北の壁にフェルメール「天文学者」「地理学者」と、まだ開かない扉。西の壁に曽我蕭白「林和靖図」と、三日月と鶴の見える十字の桟の窓。東の壁に「通り味」「白聞」の文字と、まだ分からないことを書く黒板。南の壁に地下鉄の駅の壁の染みだしを集める額の格子（埋まっているのは一枚目だけ）と掃き出し窓。床の真ん中、天井の灯り Lumen の真下に机があり、その上に川のノートと潮位表、顕微鏡、藻の瓶二つ（ぺこぺこさん・平和さん）、帳簿と豆の入った枡、手前に引き出し。ほかに床には苔のテラリウム（中に空いている「最初の住人の席」）、砂時計、ルクスの水槽、ピアノ、西の窓の下の読書の窓辺。縁側にはどんぐり用の空の小瓶、庭にはりんご箱のコンポスト（中に埋めたシールと賭けの札）と、本を積んだリヤカー。</desc>
 
   <!--
-    空、鶴を聴く　部屋の見取り図　第一版（骨組み）
+    空、鶴を聴く　部屋の見取り図　第二版（机と縁側）
 
     ・床は上から見た図。四方の壁は、床のふちを折り目にして外側へ倒した展開図。
     ・壁のグループ（wall-*）の中は、その壁に向かって立ったときの座標で描いてある。
@@ -11,7 +11,15 @@
       外へ倒す向きは各グループの transform が受け持つので、細部を足すときは回転を気にせず描けばよい。
     ・床のグループ（floor）の中は、北を上にした座標。左上が北西の隅 (0,0)、右下が南東の隅 (480,400)。
     ・天井にあるもの（Lumen）は、床の図に、真上から映した位置を点線で描いてある。
+    ・縁側と庭（engawa-and-garden）は、南の壁の展開図とぶつからないよう、図の下に別に描いてある。
+      中の座標は床と同じ横幅で、x が床の x とそろっている（縁側の北のふちが、部屋の南のふち）。
     ・置いたものは一つずつ <g id="..."> にまとめてある。拡大すると見つかる細部は、それぞれのグループの中に足していく。
+
+    部屋の決まりごと（room/README.md にも書いてある）
+    ・机の上は、今やっていること。入れ替わってよい。
+    ・壁・棚・部屋の一角は、居ついたもの。ゆきが「居ついた」と言ったら、机から引っ越す。
+    ・終わったり止まったりしたものは、消さずに引き出しへしまう。
+    ・建て増しは、あふれてから。それまでは、まだ開かない扉で予約だけしておく。
   -->
 
   <style>
@@ -22,14 +30,18 @@
     .canvas { fill: #f7f2e7; }
     .label { font-size: 15px; text-anchor: middle; }
     .sub { font-size: 11px; text-anchor: middle; fill: #666; }
+    .tiny { font-size: 6px; text-anchor: middle; fill: #444; }
     .wall-name { font-size: 13px; text-anchor: middle; fill: #555; }
     .note { font-size: 13px; fill: #555; }
     .paper { fill: #f7f2e7; stroke: #b9ae98; stroke-width: 1; }
     .word { font-size: 22px; text-anchor: middle; fill: #2b2b2b; }
     .ceiling { fill: #8a6d1c; }
+    .chalk { font-size: 9px; fill: #eceee6; }
+    .glass { fill: #cfdde3; stroke: #8a8070; stroke-width: 1; }
+    .photo-empty { fill: #efe8da; stroke: #7d6f5d; stroke-width: 1; }
   </style>
 
-  <rect width="1000" height="1080" fill="#faf7f0"/>
+  <rect width="1000" height="1440" fill="#faf7f0"/>
 
   <g id="room">
 
@@ -52,6 +64,16 @@
         <text class="label" x="325" y="96">地理学者</text>
         <text class="sub" x="325" y="116">フェルメール</text>
       </g>
+
+      <!-- 建て増しの予約。あふれたら、この先に地下室や離れを建てる -->
+      <g id="closed-door">
+        <title>まだ開かない扉（この先に、地下室や離れを建て増す予定）</title>
+        <rect x="405" y="62" width="56" height="138" fill="#9c8a72" stroke="#5e5040"/>
+        <rect x="412" y="70" width="42" height="56" fill="none" stroke="#7d6b55"/>
+        <rect x="412" y="136" width="42" height="56" fill="none" stroke="#7d6b55"/>
+        <circle cx="449" cy="131" r="2.5" fill="#d8c48a" stroke="#7d6b55" stroke-width="0.5"/>
+        <text class="sub" x="433" y="54">まだ開かない扉</text>
+      </g>
     </g>
 
     <!-- 東の壁：左が北、右が南 -->
@@ -60,23 +82,79 @@
 
       <g id="hanging-word-1">
         <title>通り味</title>
-        <rect class="paper" x="110" y="35" width="50" height="130"/>
-        <text class="word" x="135" y="80">通</text>
-        <text class="word" x="135" y="108">り</text>
-        <text class="word" x="135" y="136">味</text>
+        <rect class="paper" x="30" y="35" width="50" height="130"/>
+        <text class="word" x="55" y="80">通</text>
+        <text class="word" x="55" y="108">り</text>
+        <text class="word" x="55" y="136">味</text>
       </g>
 
       <g id="hanging-word-2">
         <title>白聞</title>
-        <rect class="paper" x="240" y="35" width="50" height="130"/>
-        <text class="word" x="265" y="94">白</text>
-        <text class="word" x="265" y="122">聞</text>
+        <rect class="paper" x="100" y="35" width="50" height="130"/>
+        <text class="word" x="125" y="94">白</text>
+        <text class="word" x="125" y="122">聞</text>
+      </g>
+
+      <!-- まだ分からないこと。答えが出たら、問いの下に答えを書き足して、消さずに残す -->
+      <g id="blackboard">
+        <title>黒板（まだ分からないこと）</title>
+        <rect x="180" y="32" width="205" height="120" fill="#2f3b33" stroke="#6b5a44" stroke-width="4"/>
+        <text class="chalk" x="192" y="52" style="font-size:11px">まだ分からないこと</text>
+        <g id="question-algae">
+          <title>問い：トリボネマか、ヒビミドロか</title>
+          <text class="chalk" x="192" y="76">・トリボネマか、ヒビミドロか</text>
+        </g>
+        <g id="question-river">
+          <title>問い：堀川の水位は、潮位に引っ張られているか</title>
+          <text class="chalk" x="192" y="96">・堀川の水位は、潮位に引っ張られている？</text>
+        </g>
+        <g id="question-compost">
+          <title>問い：コンポストで最後まで残るのは、鉛筆か、油性ペンか</title>
+          <text class="chalk" x="192" y="116">・コンポストで最後まで残るのは、</text>
+          <text class="chalk" x="201" y="130">鉛筆か、油性ペンか</text>
+        </g>
+        <rect x="180" y="154" width="205" height="5" fill="#6b5a44"/>
+        <rect x="350" y="150" width="14" height="4" rx="1.5" fill="#f4f2ea"/>
       </g>
     </g>
 
-    <!-- 南の壁：まだ何も掛けていない -->
+    <!-- 南の壁：左が東、右が西 -->
     <g id="wall-south" transform="translate(740,950) rotate(180)">
       <rect class="wall" width="480" height="200"/>
+
+      <!-- 地下鉄の駅の壁の染みだし。撮るたびに額が一つ埋まる。あふれたら地下室へ -->
+      <g id="seepage-collection">
+        <title>地下鉄の駅の壁の染みだしコレクション（額が埋まっていく）</title>
+
+        <g id="seepage-1">
+          <title>一枚目：駅の階段の壁の染みだし（白華）</title>
+          <rect x="40" y="30" width="40" height="30" fill="#9a9a94" stroke="#3b2f2a" stroke-width="1.5"/>
+          <path d="M 50 32 C 49 38 52 41 50 46 C 49 50 51 53 50 57 M 58 32 C 60 37 57 40 59 44 M 66 32 C 65 40 68 45 66 52 M 72 32 C 73 35 71 38 73 41" stroke="#f1efe8" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          <path d="M 44 33 Q 60 36 76 33" stroke="#f1efe8" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.8"/>
+        </g>
+
+        <rect class="photo-empty" x="94" y="30" width="40" height="30"/>
+        <rect class="photo-empty" x="148" y="30" width="40" height="30"/>
+        <rect class="photo-empty" x="202" y="30" width="40" height="30"/>
+        <rect class="photo-empty" x="40" y="70" width="40" height="30"/>
+        <rect class="photo-empty" x="94" y="70" width="40" height="30"/>
+        <rect class="photo-empty" x="148" y="70" width="40" height="30"/>
+        <rect class="photo-empty" x="202" y="70" width="40" height="30"/>
+        <rect class="photo-empty" x="40" y="110" width="40" height="30"/>
+        <rect class="photo-empty" x="94" y="110" width="40" height="30"/>
+        <rect class="photo-empty" x="148" y="110" width="40" height="30"/>
+        <rect class="photo-empty" x="202" y="110" width="40" height="30"/>
+
+        <text class="sub" x="141" y="162">地下鉄の駅の壁の染みだし</text>
+        <text class="sub" x="141" y="177">（埋まっているのは一枚目だけ）</text>
+      </g>
+
+      <g id="window-south">
+        <title>掃き出し窓（縁側へ出られる）</title>
+        <rect class="glass" x="280" y="40" width="160" height="160"/>
+        <path d="M 360 40 V 200" stroke="#8a8070" stroke-width="2"/>
+        <text class="sub" x="360" y="30">掃き出し窓（縁側へ）</text>
+      </g>
     </g>
 
     <!-- 西の壁：左が南、右が北 -->
@@ -123,34 +201,138 @@
       <rect class="floor" width="480" height="400"/>
       <text class="note" x="14" y="24">床（上から見た図）</text>
 
+      <!-- 南のふちの掃き出し窓 -->
+      <rect x="40" y="397" width="160" height="6" fill="#cfdde3" stroke="#8a8070" stroke-width="0.8"/>
+
       <g id="moss-terrarium">
         <title>苔のテラリウム</title>
-        <circle cx="120" cy="210" r="40" fill="#eef5f2" stroke="#9fb7b0" stroke-width="1.5"/>
-        <circle cx="120" cy="210" r="30" fill="#7f9f6a" opacity="0.6"/>
+        <circle cx="100" cy="240" r="40" fill="#eef5f2" stroke="#9fb7b0" stroke-width="1.5"/>
+        <circle cx="100" cy="240" r="30" fill="#7f9f6a" opacity="0.6"/>
 
         <g id="first-resident-seat">
           <title>最初の住人の席（空いている）</title>
-          <circle cx="120" cy="208" r="9" fill="none" stroke="#faf7f0" stroke-width="1.6" stroke-dasharray="3 2.5"/>
+          <circle cx="100" cy="238" r="9" fill="none" stroke="#faf7f0" stroke-width="1.6" stroke-dasharray="3 2.5"/>
         </g>
 
-        <text class="label" x="120" y="274">苔のテラリウム</text>
-        <text class="sub" x="120" y="292">（点線の丸：最初の住人の席）</text>
+        <text class="label" x="100" y="304">苔のテラリウム</text>
+        <text class="sub" x="100" y="322">（点線の丸：最初の住人の席）</text>
+      </g>
+
+      <!-- 西の窓の下。窓の外には月と鶴 -->
+      <g id="reading-nook">
+        <title>読書の窓辺（西の窓の下の椅子と膝掛け、小さな読書灯）</title>
+        <g id="reading-lamp">
+          <title>読書灯</title>
+          <circle cx="82" cy="76" r="18" fill="#f3e6b0" opacity="0.35"/>
+          <circle cx="82" cy="76" r="6" fill="#f3e6b0" stroke="#b08d2a" stroke-width="1"/>
+        </g>
+        <rect x="14" y="88" width="54" height="54" rx="7" fill="#8c6f56"/>
+        <rect x="22" y="95" width="40" height="40" rx="4" fill="#b39477"/>
+        <g id="lap-blanket" transform="rotate(-12 42 116)">
+          <title>膝掛け</title>
+          <rect x="27" y="99" width="30" height="36" fill="#c98f6a"/>
+          <path d="M 27 107 H 57 M 27 117 H 57 M 27 127 H 57 M 35 99 V 135 M 47 99 V 135" stroke="#e6c3a3" stroke-width="1"/>
+        </g>
+        <g id="open-book">
+          <title>読みかけの本</title>
+          <rect x="34" y="110" width="9" height="12" fill="#fbf8f0" stroke="#9a8f7a" stroke-width="0.5"/>
+          <rect x="43" y="110" width="9" height="12" fill="#fbf8f0" stroke="#9a8f7a" stroke-width="0.5"/>
+        </g>
+        <text class="label" x="52" y="168">読書の窓辺</text>
+      </g>
+
+      <!-- 机：Lumen の真下。今やっていることを広げる場所 -->
+      <g id="desk">
+        <title>机（Lumenの真下。今やっていることを広げる）</title>
+        <rect x="155" y="145" width="170" height="90" fill="#b8916a" stroke="#6e5236" stroke-width="1.5"/>
+        <text class="label" x="160" y="138" text-anchor="start">机</text>
+
+        <g id="river-notebook">
+          <title>堀川の定点観測ノート</title>
+          <rect x="163" y="153" width="28" height="38" fill="#fbf8f0" stroke="#b9ae98" stroke-width="0.8"/>
+          <rect x="191" y="153" width="28" height="38" fill="#fbf8f0" stroke="#b9ae98" stroke-width="0.8"/>
+          <path d="M 166 162 H 188 M 166 168 H 188 M 166 174 H 184 M 166 180 H 188" stroke="#c9c0ad" stroke-width="0.6"/>
+          <path d="M 194 178 L 199 171 L 203 175 L 208 166 L 212 170 L 216 163" stroke="#4a6b8a" stroke-width="1" fill="none"/>
+          <text class="tiny" x="191" y="197">堀川ノート</text>
+        </g>
+
+        <g id="tide-table">
+          <title>潮位表</title>
+          <rect x="223" y="150" width="34" height="44" fill="#ffffff" stroke="#b9ae98" stroke-width="0.8"/>
+          <path d="M 226 172 C 230 160 234 160 238 172 C 242 184 246 184 250 172 C 252 166 253 164 254 164" stroke="#4a6b8a" stroke-width="0.9" fill="none"/>
+          <text class="tiny" x="240" y="202">潮位表</text>
+        </g>
+
+        <g id="microscope">
+          <title>顕微鏡</title>
+          <rect x="274" y="168" width="26" height="22" rx="2" fill="#e8e8e8" stroke="#777" stroke-width="0.8"/>
+          <circle cx="287" cy="179" r="6" fill="#cfcfcf" stroke="#888" stroke-width="0.6"/>
+          <rect x="280" y="152" width="14" height="14" rx="2" fill="#dcdcdc" stroke="#777" stroke-width="0.8"/>
+          <circle cx="283" cy="159" r="3.5" fill="#333"/>
+          <circle cx="291" cy="159" r="3.5" fill="#333"/>
+          <text class="tiny" x="287" y="199">顕微鏡</text>
+        </g>
+
+        <!-- 藻の瓶二つ。アキネートを作らせる実験中。ヒビミドロ説もあるので、札の「？」はまだ外さない -->
+        <g id="algae-jars">
+          <title>藻の瓶（トリボネマ？）</title>
+          <text class="tiny" x="183" y="205" style="font-size:5px">トリボネマ？</text>
+          <g id="jar-pekopeko">
+            <title>ぺこぺこさん（水を替えない）</title>
+            <circle cx="166" cy="215" r="7" fill="#e4efe9" stroke="#7a9a8f" stroke-width="0.8"/>
+            <path d="M 162 217 C 164 212 166 219 168 213 M 163 214 C 166 216 168 211 170 216" stroke="#8a9a3a" stroke-width="0.7" fill="none"/>
+            <text class="tiny" x="166" y="230" style="font-size:5px">ぺこぺこさん</text>
+          </g>
+          <g id="jar-heiwa">
+            <title>平和さん（週に一回、湧き水で三分の一替える）</title>
+            <circle cx="200" cy="215" r="7" fill="#e4efe9" stroke="#7a9a8f" stroke-width="0.8"/>
+            <path d="M 196 217 C 198 212 200 219 202 213 M 197 214 C 200 216 202 211 204 216" stroke="#5f8a3a" stroke-width="0.7" fill="none"/>
+            <text class="tiny" x="200" y="230" style="font-size:5px">平和さん</text>
+          </g>
+        </g>
+
+        <g id="ledger">
+          <title>帳簿（閉じたまま。中身は描かない）</title>
+          <rect x="230" y="208" width="30" height="22" rx="1" fill="#3d4a5c" stroke="#26303d" stroke-width="0.8"/>
+          <text class="tiny" x="245" y="221" style="fill:#e8e2d0">帳簿</text>
+        </g>
+
+        <g id="masu-of-beans">
+          <title>豆の入った枡（Beancount の豆）</title>
+          <rect x="268" y="208" width="20" height="20" fill="#d9b98a" stroke="#8a6d48" stroke-width="0.8"/>
+          <rect x="271" y="211" width="14" height="14" fill="#c9a66b"/>
+          <g fill="#ecdcae" stroke="#b08d5a" stroke-width="0.3">
+            <ellipse cx="275" cy="215" rx="1.8" ry="1.3"/>
+            <ellipse cx="280" cy="214" rx="1.8" ry="1.3"/>
+            <ellipse cx="277" cy="219" rx="1.8" ry="1.3"/>
+            <ellipse cx="282" cy="220" rx="1.8" ry="1.3"/>
+            <ellipse cx="274" cy="222" rx="1.8" ry="1.3"/>
+          </g>
+        </g>
+
+        <!-- 終わったり止まったりしたものは、消さずにここへしまう -->
+        <g id="drawer">
+          <title>引き出し（終わったもの、止まったものをしまう）</title>
+          <rect x="215" y="235" width="50" height="9" fill="#a37f5a" stroke="#6e5236" stroke-width="1"/>
+          <circle cx="240" cy="239.5" r="1.6" fill="#d8c48a"/>
+          <text class="sub" x="240" y="258">引き出し</text>
+        </g>
       </g>
 
       <g id="hourglass">
         <title>砂時計</title>
-        <rect x="222" y="272" width="36" height="36" rx="4" fill="#c9b08a" stroke="#7a6548"/>
-        <circle cx="240" cy="290" r="11" fill="#f1f4f4" stroke="#9aa5a5"/>
-        <text class="label" x="240" y="330">砂時計</text>
+        <rect x="282" y="272" width="36" height="36" rx="4" fill="#c9b08a" stroke="#7a6548"/>
+        <circle cx="300" cy="290" r="11" fill="#f1f4f4" stroke="#9aa5a5"/>
+        <text class="label" x="300" y="330">砂時計</text>
       </g>
 
       <g id="lux-aquarium">
         <title>ルクスの水槽</title>
-        <rect x="300" y="140" width="130" height="84" fill="#d8e8ef" stroke="#5f7f8f" stroke-width="1.5"/>
-        <text class="label" x="365" y="246">ルクスの水槽</text>
+        <rect x="335" y="140" width="130" height="84" fill="#d8e8ef" stroke="#5f7f8f" stroke-width="1.5"/>
+        <text class="label" x="400" y="246">ルクスの水槽</text>
 
         <!-- ルクス：上から見たタコ。頭（外套膜）が北、八本の腕が南へ広がる。中の座標は頭と腕の付け根が (0,0) -->
-        <g id="lux" transform="translate(365,180)">
+        <g id="lux" transform="translate(400,180)">
           <title>ルクス（赤い石を持っているタコ）</title>
           <g stroke="#e2836b" stroke-width="2.4" stroke-linecap="round" fill="none">
             <path d="M 3.9 2.3 C 10.8 1.1 17.0 1.8 19.0 -3.2 Q 19.5 -8.2 15.8 -8.5"/>
@@ -175,26 +357,136 @@
         </g>
       </g>
 
-      <!-- 天井の灯り：床の図には、真上から映した位置を点線で示す -->
+      <!-- ピアノ：南の壁を背にしたアップライト。鍵盤は北を向いている -->
+      <g id="piano">
+        <title>ピアノ</title>
+        <rect x="375" y="320" width="50" height="14" rx="2" fill="#5a463a"/>
+        <rect x="335" y="342" width="130" height="10" fill="#f5f2ea" stroke="#555" stroke-width="0.8"/>
+        <path d="M 345 342 V 348 M 353 342 V 348 M 367 342 V 348 M 375 342 V 348 M 383 342 V 348 M 397 342 V 348 M 405 342 V 348 M 419 342 V 348 M 427 342 V 348 M 435 342 V 348 M 449 342 V 348 M 457 342 V 348" stroke="#222" stroke-width="2.5"/>
+        <rect x="335" y="352" width="130" height="44" fill="#2b2420"/>
+        <text class="label" x="400" y="380" style="fill:#efe7d6">ピアノ</text>
+      </g>
+
+      <!-- 天井の灯り：床の図には、真上から映した位置を点線で示す。真下に机がある -->
       <g id="lumen">
         <title>Lumen（天井の、輪の形の灯り）</title>
         <g fill="none" stroke="#b08d2a" stroke-width="1.5" stroke-dasharray="4 3">
-          <circle cx="240" cy="200" r="30"/>
-          <circle cx="240" cy="200" r="21"/>
+          <circle cx="240" cy="190" r="30"/>
+          <circle cx="240" cy="190" r="21"/>
         </g>
-        <text class="label ceiling" x="240" y="250">Lumen</text>
+        <text class="label ceiling" x="240" y="134">Lumen</text>
       </g>
     </g>
   </g>
 
+  <!-- 縁側と庭：南の掃き出し窓から出たところ。上から見た図。x は床とそろえてある -->
+  <g id="engawa-and-garden" transform="translate(260,1030)">
+    <rect x="0" y="56" width="480" height="264" fill="#e3ecd6" stroke="#a9b99a" stroke-width="1" stroke-dasharray="5 4"/>
+    <g stroke="#9fb38a" stroke-width="1" stroke-linecap="round">
+      <path d="M 30 300 l 3 -7 M 36 302 l -2 -8 M 250 290 l 3 -7 M 256 292 l -2 -8 M 440 280 l 3 -7 M 446 282 l -2 -8 M 230 120 l 3 -7 M 236 122 l -2 -8"/>
+    </g>
+
+    <g id="engawa">
+      <title>縁側</title>
+      <rect x="0" y="0" width="480" height="56" fill="#d9c3a0" stroke="#8a6d48" stroke-width="1.5"/>
+      <path d="M 0 14 H 480 M 0 28 H 480 M 0 42 H 480" stroke="#c4aa82" stroke-width="0.8"/>
+      <rect x="40" y="-3" width="160" height="6" fill="#cfdde3" stroke="#8a8070" stroke-width="0.8"/>
+      <text class="sub" x="120" y="22">↑ 掃き出し窓（部屋へ）</text>
+      <text class="label" x="300" y="34">縁側</text>
+    </g>
+
+    <g id="acorn-jar">
+      <title>どんぐり用の空の小瓶（2027年の旬を待っている）</title>
+      <circle cx="452" cy="24" r="9" fill="#eef3f3" stroke="#8aa0a0" stroke-width="1"/>
+      <circle cx="452" cy="24" r="5.5" fill="none" stroke="#b9c8c8" stroke-width="0.8"/>
+      <text class="tiny" x="452" y="26">2027</text>
+      <text class="sub" x="440" y="50">どんぐりの小瓶</text>
+    </g>
+
+    <g id="compost">
+      <title>コンポスト（りんご箱）</title>
+      <rect x="60" y="120" width="100" height="80" fill="#b38a5a" stroke="#6e5236" stroke-width="3"/>
+      <rect x="66" y="126" width="88" height="68" fill="#5b4632"/>
+      <g fill="#7a5d3e">
+        <circle cx="76" cy="140" r="3"/><circle cx="130" cy="182" r="2.5"/><circle cx="142" cy="136" r="2"/><circle cx="98" cy="186" r="2"/>
+      </g>
+      <!-- 蓋は横に立てかけてある -->
+      <rect x="166" y="118" width="10" height="84" fill="#c9a575" stroke="#6e5236" stroke-width="1"/>
+
+      <!-- 埋めたシール。拡大すると見える -->
+      <g id="buried-labels">
+        <title>埋めたシール（どれが最後まで残るか）</title>
+        <g id="label-sticky-note">
+          <title>付箋</title>
+          <rect x="82" y="148" width="10" height="10" fill="#f2d65a" opacity="0.9" transform="rotate(-10 87 153)"/>
+        </g>
+        <g id="label-oil-pen">
+          <title>油性ペン（黒）で書いたシール</title>
+          <rect x="104" y="158" width="14" height="9" fill="#f4f1ea" transform="rotate(8 111 162)"/>
+          <path d="M 106 162 H 116" stroke="#111" stroke-width="1.2" transform="rotate(8 111 162)"/>
+        </g>
+        <g id="label-pencil">
+          <title>鉛筆で書いたシール</title>
+          <rect x="126" y="144" width="14" height="9" fill="#f4f1ea" transform="rotate(-6 133 148)"/>
+          <path d="M 128 148 H 138" stroke="#888" stroke-width="0.9" transform="rotate(-6 133 148)"/>
+        </g>
+      </g>
+      <text class="label" x="110" y="222">コンポスト（りんご箱）</text>
+    </g>
+
+    <g id="bet-sign">
+      <title>賭けの札（勝ったほうの名前を、あとで書き足す）</title>
+      <path d="M 221 162 V 184" stroke="#6e5236" stroke-width="2"/>
+      <rect x="182" y="126" width="78" height="38" fill="#f7f2e7" stroke="#8a6d48" stroke-width="1"/>
+      <text class="tiny" x="221" y="137" style="font-size:7px">最後まで残るのは？</text>
+      <text class="tiny" x="221" y="148" style="font-size:6.5px">ゆき：油性ペン（黒）</text>
+      <text class="tiny" x="221" y="158" style="font-size:6.5px">Claude：鉛筆</text>
+    </g>
+
+    <!-- リヤカー：本を積んだまま縁側の前に停めてある。ハンドルは東 -->
+    <g id="rear-cart">
+      <title>リヤカー（本を積んだまま停めてある）</title>
+      <rect x="345" y="92" width="40" height="8" rx="2" fill="#333"/>
+      <rect x="345" y="180" width="40" height="8" rx="2" fill="#333"/>
+      <rect x="300" y="100" width="130" height="80" fill="#8c9aa3" stroke="#4f5b63" stroke-width="2"/>
+      <path d="M 430 108 H 462 V 172 H 430" fill="none" stroke="#4f5b63" stroke-width="3"/>
+
+      <g id="cart-books">
+        <title>最初の3冊</title>
+        <g>
+          <title>『なくなりそうな世界のことば』</title>
+          <rect x="308" y="110" width="88" height="15" fill="#6d8a7a"/>
+          <text class="tiny" x="352" y="120" style="font-size:5.5px;fill:#f4f1ea">なくなりそうな世界のことば</text>
+        </g>
+        <g>
+          <title>『名詩の絵本』</title>
+          <rect x="308" y="130" width="88" height="15" fill="#b0704f"/>
+          <text class="tiny" x="352" y="140" style="font-size:5.5px;fill:#f4f1ea">名詩の絵本</text>
+        </g>
+        <g>
+          <title>『暮らしの哲学』</title>
+          <rect x="308" y="150" width="88" height="15" fill="#4a5e7a"/>
+          <text class="tiny" x="352" y="160" style="font-size:5.5px;fill:#f4f1ea">暮らしの哲学</text>
+        </g>
+      </g>
+
+      <g id="postcard-kit">
+        <title>絵葉書キット（声をかけられたら出す）</title>
+        <rect x="403" y="150" width="22" height="22" fill="#f2e3c4" stroke="#a08a63" stroke-width="0.8"/>
+        <text class="tiny" x="414" y="163" style="font-size:5px">絵葉書</text>
+      </g>
+      <text class="label" x="365" y="214">リヤカー</text>
+    </g>
+  </g>
+
   <g id="map-labels">
-    <text x="60" y="62" font-size="24px">空、鶴を聴く　部屋の見取り図</text>
-    <text x="60" y="92" font-size="14px" fill="#666">第一版（骨組み）</text>
+    <text x="60" y="62" style="font-size:24px">空、鶴を聴く　部屋の見取り図</text>
+    <text x="60" y="92" fill="#666" style="font-size:14px">第二版（机と縁側を足した）</text>
 
     <g id="compass">
       <path d="M 920 104 L 920 66" stroke="#555" stroke-width="1.5"/>
       <path d="M 914 74 L 920 60 L 926 74 Z" fill="#555"/>
-      <text x="920" y="50" font-size="15px" text-anchor="middle">北</text>
+      <text x="920" y="50" text-anchor="middle" style="font-size:15px">北</text>
     </g>
 
     <text class="wall-name" x="500" y="140">北の壁</text>
@@ -202,8 +494,10 @@
     <text class="wall-name" x="500" y="972">南の壁</text>
     <text class="wall-name" x="160" y="340">西の壁</text>
 
-    <text class="note" x="60" y="1010">床は上から見た図。四方の壁は、床のふちを折り目にして外側へ倒して描いています。</text>
-    <text class="note" x="60" y="1032">壁の中のものは、その壁に向かって立ったときの向きです（西の壁は首を左に、東の壁は首を右にかしげると正面から見た向きになります）。</text>
-    <text class="note" x="60" y="1054">点線の輪は、天井の灯り Lumen を床に映した位置です。</text>
+    <text x="60" y="1010" style="font-size:15px">縁側と庭（南の掃き出し窓から出たところ・上から見た図）</text>
+
+    <text class="note" x="60" y="1378">床と縁側は上から見た図。四方の壁は、床のふちを折り目にして外側へ倒して描いています。</text>
+    <text class="note" x="60" y="1400">壁の中のものは、その壁に向かって立ったときの向きです（西の壁は首を左に、東の壁は首を右にかしげ、南の壁は逆さにすると正面から見た向きになります）。</text>
+    <text class="note" x="60" y="1422">点線の輪は、天井の灯り Lumen を床に映した位置です。まだ開かない扉の先には、あふれたら地下室や離れを建て増します。</text>
   </g>
 </svg>
