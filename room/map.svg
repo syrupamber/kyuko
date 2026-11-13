@@ -47,6 +47,10 @@
       <stop offset="0.55" stop-color="#ffe9a8" stop-opacity="0.28"/>
       <stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/>
     </radialGradient>
+    <radialGradient id="skylight-light">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#f6fbff" stop-opacity="0.15"/>
+    </radialGradient>
   </defs>
 
   <rect width="1000" height="1440" fill="#faf7f0"/>
@@ -359,6 +363,20 @@
       <g id="lux-aquarium">
         <title>ルクスの水槽</title>
         <rect x="335" y="140" width="130" height="84" fill="#d8e8ef" stroke="#5f7f8f" stroke-width="1.5"/>
+
+        <!-- 天窓から落ちた光。水槽の底に映る光の網目 -->
+        <g id="skylight-caustics">
+          <title>天窓から落ちた光（水槽の底の光の網目）</title>
+          <rect x="360" y="148" width="80" height="68" fill="url(#skylight-light)"/>
+          <g stroke="#ffffff" stroke-width="0.8" fill="none" opacity="0.75" stroke-linecap="round">
+            <path d="M 364 158 C 372 154 378 162 386 157 C 394 152 400 160 408 155 C 416 151 424 158 436 154"/>
+            <path d="M 364 176 C 371 171 379 180 388 174 C 396 169 404 178 413 172 C 421 168 428 176 436 171"/>
+            <path d="M 364 196 C 372 191 380 199 389 193 C 397 188 405 197 414 191 C 422 187 429 195 436 190"/>
+            <path d="M 372 152 C 368 162 376 170 371 180 C 367 190 375 198 371 210"/>
+            <path d="M 398 152 C 394 162 402 171 397 181 C 393 191 401 200 397 210"/>
+            <path d="M 424 152 C 420 162 428 170 423 180 C 419 190 427 199 423 210"/>
+          </g>
+        </g>
         <text class="label" x="400" y="246">ルクスの水槽</text>
 
         <!-- ルクス：上から見たタコ。頭（外套膜）が北、八本の腕が南へ広がる。中の座標は頭と腕の付け根が (0,0) -->
@@ -395,6 +413,13 @@
         <path d="M 345 342 V 348 M 353 342 V 348 M 367 342 V 348 M 375 342 V 348 M 383 342 V 348 M 397 342 V 348 M 405 342 V 348 M 419 342 V 348 M 427 342 V 348 M 435 342 V 348 M 449 342 V 348 M 457 342 V 348" stroke="#222" stroke-width="2.5"/>
         <rect x="335" y="352" width="130" height="44" fill="#2b2420"/>
         <text class="label" x="400" y="380" style="fill:#efe7d6">ピアノ</text>
+      </g>
+
+      <!-- 天窓：天井にあるので、真上から映した位置を点線で示す。真下にルクスの水槽がある -->
+      <g id="skylight">
+        <title>天窓（真下のルクスの水槽に光が届く）</title>
+        <rect x="360" y="148" width="80" height="68" fill="none" stroke="#b08d2a" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text class="label ceiling" x="400" y="132">天窓</text>
       </g>
 
       <!-- 天井の灯り：床の図には、真上から映した位置を点線で示す。真下に机がある -->
@@ -528,6 +553,6 @@
 
     <text class="note" x="60" y="1378">床と縁側は上から見た図。四方の壁は、床のふちを折り目にして外側へ倒して描いています。</text>
     <text class="note" x="60" y="1400">壁の中のものは、その壁に向かって立ったときの向きです（西の壁は首を左に、東の壁は首を右にかしげ、南の壁は逆さにすると正面から見た向きになります）。</text>
-    <text class="note" x="60" y="1422">点線の輪は、天井の灯り Lumen を床に映した位置です。まだ開かない扉の先には、あふれたら地下室や離れを建て増します。</text>
+    <text class="note" x="60" y="1422">点線は、天井にあるもの（灯り Lumen と天窓）を床に映した位置です。まだ開かない扉の先には、あふれたら地下室や離れを建て増します。</text>
   </g>
 </svg>
