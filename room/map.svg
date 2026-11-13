@@ -379,6 +379,14 @@
         </g>
         <text class="label" x="400" y="246">ルクスの水槽</text>
 
+        <!-- 天窓の光が届かない隅。ルクスが嫌だなと思ったとき、一人になりたいときに入る -->
+        <g id="octopus-pot">
+          <title>タコ壺（ルクスが一人になりたいときの場所）</title>
+          <ellipse cx="453" cy="205" rx="10" ry="8" fill="#b3653f" stroke="#7a3f25" stroke-width="0.8"/>
+          <path d="M 449 199 C 453 198 457 199 460 201" stroke="#cf8a63" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+          <ellipse cx="444" cy="205" rx="3" ry="5.5" fill="#3a2218"/>
+        </g>
+
         <!-- ルクス：上から見たタコ。頭（外套膜）が北、八本の腕が南へ広がる。中の座標は頭と腕の付け根が (0,0) -->
         <g id="lux" transform="translate(400,180)">
           <title>ルクス（赤い石を持っているタコ）</title>
