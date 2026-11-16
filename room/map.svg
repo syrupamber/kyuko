@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1440" width="1000" height="1440" role="img" aria-labelledby="map-title map-desc">
-  <title id="map-title">空、鶴を聴く　部屋の見取り図（第二版・机と縁側）</title>
-  <desc id="map-desc">床を上から見た平面図のまわりに、四方の壁を外側へ倒して並べた展開図と、その下に南の掃き出し窓から出た縁側と庭の平面図。北の壁にフェルメール「天文学者」「地理学者」と、まだ開かない扉。西の壁に曽我蕭白「林和靖図」と、三日月と鶴の見える十字の桟の窓。東の壁に「通り味」「白聞」の文字と、まだ分からないことを書く黒板。南の壁に地下鉄の駅の壁の染みだしを集める額の格子（埋まっているのは一枚目だけ）と掃き出し窓。床の真ん中、天井の灯り Lumen の真下に机があり、その上に川のノートと潮位表、顕微鏡、藻の瓶二つ（ぺこぺこさん・平和さん）、帳簿と豆の入った枡、手前に引き出し。ほかに床には苔のテラリウム（中に空いている「最初の住人の席」）、砂時計、ルクスの水槽、ピアノ、西の窓の下の読書の窓辺。縁側にはどんぐり用の空の小瓶、庭にはりんご箱のコンポスト（中に埋めたシールと賭けの札）と、本を積んだリヤカー。</desc>
+  <title id="map-title">空、鶴を聴く　部屋の見取り図（第三版・木陰と亀）</title>
+  <desc id="map-desc">床を上から見た平面図のまわりに、四方の壁を外側へ倒して並べた展開図と、その下に南の掃き出し窓から出た縁側と庭の平面図。北の壁にフェルメール「天文学者」「地理学者」と、まだ開かない扉。西の壁に曽我蕭白「林和靖図」と、三日月と鶴の見える十字の桟の窓。東の壁に「通り味」「白聞」の文字と、まだ分からないことを書く黒板。南の壁に地下鉄の駅の壁の染みだしを集める額の格子（埋まっているのは一枚目だけ）と掃き出し窓。床の真ん中、天井の灯り Lumen の真下に机があり、その上に川のノートと潮位表、顕微鏡、藻の瓶二つ（ぺこぺこさん・平和さん）、帳簿と豆の入った枡、手前に引き出し。ほかに床には苔のテラリウム（中に空いている「最初の住人の席」）、砂時計、ルクスの水槽、ピアノ、西の窓の下の読書の窓辺。縁側にはどんぐり用の空の小瓶、庭にはりんご箱のコンポスト（中に寝かせた板と目印の棒、賭けの札）と、本を積んだリヤカー。第三版で足したもの：北の壁に、茶筒と欠けた湯のみのあいだを手のひらひとつぶん空けた棚。黒板に四つ目の問い。天窓に飛行機雲が一本。縁側の西の端に、瓦の屋根へのはしご。庭に、富士山の斜面、木陰に敷いたシートと風呂敷と四冊の本と札と空いた席、その少し先を歩く亀のカシオペイア（甲羅の文字は「セッカチ」）。</desc>
 
   <!--
-    空、鶴を聴く　部屋の見取り図　第二版（机と縁側）
+    空、鶴を聴く　部屋の見取り図　第三版（木陰と亀）
 
     ・床は上から見た図。四方の壁は、床のふちを折り目にして外側へ倒した展開図。
     ・壁のグループ（wall-*）の中は、その壁に向かって立ったときの座標で描いてある。
@@ -60,6 +60,28 @@
     <!-- 北の壁：床のふちを下にして、上へ起こした向き -->
     <g id="wall-north" transform="translate(260,150)">
       <rect class="wall" width="480" height="200"/>
+
+      <!-- 音の棚：寝る前のお話「音の倉庫番」から。茶筒と欠けた湯のみのあいだは、わざと空けてある -->
+      <g id="sound-shelf">
+        <title>棚（茶筒と欠けた湯のみのあいだを、手のひらひとつぶん空けてある。まだ鳴っていない音が、来てもいいように）</title>
+        <rect x="14" y="118" width="64" height="4" fill="#8a6d48" stroke="#6e5236" stroke-width="0.6"/>
+        <path d="M 20 122 l 4 8 M 72 122 l -4 8" stroke="#6e5236" stroke-width="1.2"/>
+        <g id="tea-caddy">
+          <title>茶筒</title>
+          <rect x="20" y="98" width="13" height="20" rx="1.5" fill="#5d6b4f" stroke="#3f4a36" stroke-width="0.8"/>
+          <path d="M 20 104 H 33" stroke="#3f4a36" stroke-width="0.8"/>
+        </g>
+        <g id="empty-palm-space">
+          <title>手のひらひとつぶんの空き（何も置かない）</title>
+          <rect x="35" y="100" width="19" height="18" fill="none"/>
+        </g>
+        <g id="chipped-cup">
+          <title>欠けた湯のみ</title>
+          <path d="M 56 107 H 61 L 62.5 109.5 L 64 107 H 69 L 68 118 H 57 Z" fill="#e9e2d2" stroke="#8a8070" stroke-width="0.8"/>
+        </g>
+        <text class="sub" x="46" y="142">棚</text>
+        <text class="tiny" x="46" y="152">あいだは空けておく</text>
+      </g>
 
       <g id="vermeer-astronomer">
         <title>フェルメール「天文学者」</title>
@@ -124,6 +146,10 @@
           <title>問い：コンポストで最後まで残るのは、鉛筆か、油性ペンか</title>
           <text class="chalk" x="192" y="116">・コンポストで最後まで残るのは、</text>
           <text class="chalk" x="201" y="130">鉛筆か、油性ペンか</text>
+        </g>
+        <g id="question-outdoor-reading">
+          <title>問い：外で読むと、何が違うの？</title>
+          <text class="chalk" x="192" y="146">・外で読むと、何が違うの？</text>
         </g>
         <rect x="180" y="154" width="205" height="5" fill="#6b5a44"/>
         <rect x="350" y="150" width="14" height="4" rx="1.5" fill="#f4f2ea"/>
@@ -427,6 +453,11 @@
       <g id="skylight">
         <title>天窓（真下のルクスの水槽に光が届く）</title>
         <rect x="360" y="148" width="80" height="68" fill="none" stroke="#b08d2a" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <g id="contrail">
+          <title>飛行機雲（線が一本。昼間の、消えるのがゆっくりな流れ星）</title>
+          <path d="M 363 156 L 437 167" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" opacity="0.9"/>
+          <path d="M 400 161.5 L 437 167" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" opacity="0.35"/>
+        </g>
         <text class="label ceiling" x="400" y="132">天窓</text>
       </g>
 
@@ -476,22 +507,27 @@
       <!-- 蓋は横に立てかけてある -->
       <rect x="166" y="118" width="10" height="84" fill="#c9a575" stroke="#6e5236" stroke-width="1"/>
 
-      <!-- 埋めたシール。拡大すると見える -->
+      <!-- 埋めた板。拡大すると見える。透明な板に六種類を貼って、シール面を上に寝かせてある（2026-11-14） -->
       <g id="buried-labels">
-        <title>埋めたシール（どれが最後まで残るか）</title>
-        <g id="label-sticky-note">
-          <title>付箋</title>
-          <rect x="82" y="148" width="10" height="10" fill="#f2d65a" opacity="0.9" transform="rotate(-10 87 153)"/>
+        <title>埋めた板（六種類。どれが最初に消えて、どの線が最後まで残るか。同じ板がもう一枚、引き出しにある）</title>
+        <rect x="96" y="134" width="24" height="52" rx="1.5" fill="#dfe9ea" opacity="0.38" stroke="#cfdada" stroke-width="0.6" transform="rotate(-8 108 160)"/>
+        <g transform="rotate(-8 108 160)">
+          <g id="label-kraft"><title>クラフトテープ</title><rect x="100" y="138" width="16" height="5" fill="#c9a877"/></g>
+          <g id="label-clear"><title>透明テープ（鉛筆は乗らなかった）</title><rect x="100" y="145.5" width="16" height="5" fill="#eef4f4" opacity="0.5" stroke="#cfdada" stroke-width="0.3"/></g>
+          <g id="label-tack"><title>タックシール</title><rect x="103" y="153" width="10" height="5" fill="#f7f7f2" stroke="#2c46a8" stroke-width="0.7"/></g>
+          <g id="label-masking"><title>マスキングテープ（柄で線が見えにくい）</title><rect x="100" y="160.5" width="16" height="5" fill="#e9c9dc"/></g>
+          <g id="label-green"><title>緑の養生テープ</title><rect x="100" y="168" width="16" height="5" fill="#63d22e"/></g>
+          <g id="label-sticky-note"><title>付箋</title><rect x="100" y="175.5" width="16" height="5" rx="1.2" fill="#cfe9d2"/></g>
+          <g id="label-lines" stroke-linecap="round">
+            <title>線は三本ずつ：油性ペン（黒）、水性ペン、鉛筆</title>
+            <path d="M 104 139.2 v 2.6 M 104 146.7 v 2.6 M 105.5 154.2 v 2.6 M 104 161.7 v 2.6 M 104 169.2 v 2.6 M 104 176.7 v 2.6" stroke="#111" stroke-width="0.9"/>
+            <path d="M 108 139.2 v 2.6 M 108 146.7 v 2.6 M 108 154.2 v 2.6 M 108 161.7 v 2.6 M 108 169.2 v 2.6 M 108 176.7 v 2.6" stroke="#333" stroke-width="0.5"/>
+            <path d="M 112 139.2 v 2.6 M 110.5 154.2 v 2.6 M 112 161.7 v 2.6 M 112 169.2 v 2.6 M 112 176.7 v 2.6" stroke="#999" stroke-width="0.4"/>
+          </g>
         </g>
-        <g id="label-oil-pen">
-          <title>油性ペン（黒）で書いたシール</title>
-          <rect x="104" y="158" width="14" height="9" fill="#f4f1ea" transform="rotate(8 111 162)"/>
-          <path d="M 106 162 H 116" stroke="#111" stroke-width="1.2" transform="rotate(8 111 162)"/>
-        </g>
-        <g id="label-pencil">
-          <title>鉛筆で書いたシール</title>
-          <rect x="126" y="144" width="14" height="9" fill="#f4f1ea" transform="rotate(-6 133 148)"/>
-          <path d="M 128 148 H 138" stroke="#888" stroke-width="0.9" transform="rotate(-6 133 148)"/>
+        <g id="marker-stick">
+          <title>目印の棒（ここだけ、そっと掘る）</title>
+          <circle cx="126" cy="150" r="1.6" fill="#e8d9b5" stroke="#8a6d48" stroke-width="0.6"/>
         </g>
       </g>
       <text class="label" x="110" y="222">コンポスト（りんご箱）</text>
@@ -540,11 +576,76 @@
       </g>
       <text class="label" x="365" y="214">リヤカー</text>
     </g>
+
+    <!-- はしご：縁側の西の端から、瓦の屋根へ。屋根はこの図の上にあるので描かない -->
+    <g id="roof-ladder">
+      <title>はしご（瓦の屋根へ。屋根は居心地を良くしない。枕は置かない。たまにお邪魔させてもらう場所）</title>
+      <path d="M 10 6 V 50 M 22 6 V 50" stroke="#8a6d48" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M 10 12 H 22 M 10 20 H 22 M 10 28 H 22 M 10 36 H 22 M 10 44 H 22" stroke="#8a6d48" stroke-width="1.3"/>
+      <text class="tiny" x="28" y="49" style="font-size:7px;text-anchor:start">はしご（瓦の屋根へ）</text>
+    </g>
+
+    <!-- 富士山の斜面：寝転ぶと視界がぜんぶ空になる。瓦と同じ、迎合しない席 -->
+    <g id="fuji-slope">
+      <title>富士山の斜面（寝転ぶと、視界がぜんぶ空になる。起きたら「寒っ」「夜やんけ！」）</title>
+      <ellipse cx="56" cy="270" rx="38" ry="30" fill="#b9c3c9" stroke="#8d9aa2" stroke-width="1"/>
+      <ellipse cx="56" cy="268" rx="25" ry="19" fill="#a7b3ba" stroke="#8d9aa2" stroke-width="0.6"/>
+      <path d="M 44 263 q 4 -9 12 -8 q 9 -1 12 8 q -4 3 -6 0 q -3 4 -6 0 q -3 4 -6 0 q -3 3 -6 0 Z" fill="#f7f7f4" stroke="#c9d0d4" stroke-width="0.5"/>
+      <text class="sub" x="66" y="316">富士山の斜面</text>
+    </g>
+
+    <!-- 木陰の読書：貸さない、売らない、隣で読むだけ（2026-11-14 が第0回） -->
+    <g id="reading-in-the-shade">
+      <title>木陰の読書（シートを敷いて、風呂敷に包んできた本を並べて、隣で読むだけ）</title>
+      <circle cx="362" cy="262" r="6" fill="#8a6d48" stroke="#6e5236" stroke-width="1"/>
+      <g id="leisure-sheet">
+        <title>レジャーシート（次はもう少し大きいのを）</title>
+        <rect x="300" y="246" width="44" height="36" fill="#3f8f5a" stroke="#2f6e45" stroke-width="1"/>
+      </g>
+      <g id="furoshiki">
+        <title>風呂敷（包んで運んで、ほどいたら敷物になる）</title>
+        <rect x="304" y="250" width="26" height="22" fill="#f3ecc4" stroke="#7d74b8" stroke-width="2"/>
+      </g>
+      <g id="shade-books">
+        <title>本が四冊（表紙を上に）</title>
+        <g><title>『モモ』（この木陰で読み切った）</title><rect x="306" y="252" width="7" height="9" fill="#f4f1ea" stroke="#c98a2b" stroke-width="0.8"/></g>
+        <g><title>『名詩の絵本』</title><rect x="315" y="252" width="7" height="9" fill="#2a3f8f"/></g>
+        <g><title>『暮らしの哲学』</title><rect x="306" y="262" width="7" height="8" fill="#f2c230"/></g>
+        <g><title>『なくなりそうな世界のことば』</title><rect x="315" y="262" width="11" height="8" fill="#f4f1ea" stroke="#b9ae98" stroke-width="0.5"/></g>
+      </g>
+      <g id="shade-sign">
+        <title>札「外で読むと何が違うの？　ご自由にどうぞ。ここで読めます」（札が代わりに声をかける）</title>
+        <rect x="300" y="286" width="46" height="13" fill="#f7f2e7" stroke="#8a6d48" stroke-width="0.8"/>
+        <text class="tiny" x="323" y="292" style="font-size:4.2px">外で読むと何が違うの？</text>
+        <text class="tiny" x="323" y="297" style="font-size:3.4px">ご自由にどうぞ。ここで読めます</text>
+      </g>
+      <g id="empty-seat">
+        <title>空いた席（座っていい場所があると、人は近づける）</title>
+        <rect x="332" y="272" width="10" height="9" rx="2" fill="#c9b8d8" stroke="#8f7fa8" stroke-width="0.6" stroke-dasharray="1.5 1"/>
+      </g>
+      <ellipse cx="348" cy="266" rx="52" ry="44" fill="#6fa35a" opacity="0.28" stroke="#5b8a49" stroke-width="1" stroke-dasharray="3 3"/>
+      <text class="label" x="436" y="300">木陰の読書</text>
+    </g>
+
+    <!-- カシオペイア：本の少し先を歩く亀。少し先しか見えない -->
+    <g id="cassiopeia">
+      <title>カシオペイア（亀。少し先しか見えない。甲羅の文字は「セッカチ」。ときどき割れる）</title>
+      <g transform="translate(258,266)">
+        <ellipse cx="-11" cy="0" rx="4" ry="3" fill="#8fae6b" stroke="#5d7a44" stroke-width="0.6"/>
+        <path d="M -6 -6 l -4 -3 M -6 6 l -4 3 M 6 -6 l 4 -3 M 6 6 l 4 3" stroke="#8fae6b" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M 10 0 l 4 1" stroke="#8fae6b" stroke-width="1.6" stroke-linecap="round"/>
+        <ellipse cx="0" cy="0" rx="10" ry="8" fill="#6b8f4e" stroke="#4a6b36" stroke-width="1"/>
+        <path d="M -5 -6.9 V 6.9 M 5 -6.9 V 6.9 M -10 0 H -5 M 5 0 H 10" stroke="#4a6b36" stroke-width="0.4" opacity="0.6"/>
+        <text x="0" y="1.4" text-anchor="middle" style="font-size:3.4px;fill:#f6f2c8">セッカチ</text>
+        <circle cx="-12.5" cy="-1" r="0.5" fill="#222"/>
+      </g>
+      <text class="sub" x="258" y="250">カシオペイア</text>
+    </g>
   </g>
 
   <g id="map-labels">
     <text x="60" y="62" style="font-size:24px">空、鶴を聴く　部屋の見取り図</text>
-    <text x="60" y="92" fill="#666" style="font-size:14px">第二版（机と縁側を足した）</text>
+    <text x="60" y="92" fill="#666" style="font-size:14px">第三版（庭に木陰と亀、棚にひとつぶんの空き）</text>
 
     <g id="compass">
       <path d="M 920 104 L 920 66" stroke="#555" stroke-width="1.5"/>
@@ -561,6 +662,6 @@
 
     <text class="note" x="60" y="1378">床と縁側は上から見た図。四方の壁は、床のふちを折り目にして外側へ倒して描いています。</text>
     <text class="note" x="60" y="1400">壁の中のものは、その壁に向かって立ったときの向きです（西の壁は首を左に、東の壁は首を右にかしげ、南の壁は逆さにすると正面から見た向きになります）。</text>
-    <text class="note" x="60" y="1422">点線は、天井にあるもの（灯り Lumen と天窓）を床に映した位置です。まだ開かない扉の先には、あふれたら地下室や離れを建て増します。</text>
+    <text class="note" x="60" y="1422">点線は、天井にあるもの（灯り Lumen と天窓）を床に映した位置です。まだ開かない扉の先には、あふれたら地下室や離れを建て増します。瓦の屋根は、この図の上にあります。</text>
   </g>
 </svg>
